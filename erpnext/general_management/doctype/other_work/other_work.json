@@ -1,0 +1,67 @@
+{
+ "autoname": "{employee_name}.####",
+ "creation": "2020-04-21 20:36:40.065833",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "timesheet_description",
+  "total_hours"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u5458\u5de5",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "\u59d3\u540d",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_hours",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u5de5\u4f5c\u65f6\u957f",
+   "reqd": 1
+  },
+  {
+   "fieldname": "timesheet_description",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "\u5de5\u4f5c\u63cf\u8ff0",
+   "reqd": 1
+  }
+ ],
+ "modified": "2020-04-22 06:37:56.676468",
+ "modified_by": "wull@gooalgene.com",
+ "module": "general management",
+ "name": "other_work",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

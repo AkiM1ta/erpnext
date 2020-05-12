@@ -14,7 +14,7 @@ from erpnext.hr.doctype.daily_work_summary.daily_work_summary import get_users_e
 from erpnext.hr.doctype.holiday_list.holiday_list import is_holiday
 from frappe.model.document import Document
 
-class Project(Document):
+class general_project(Document):
 	def get_feed(self):
 		return '{0}: {1}'.format(_(self.status), frappe.safe_decode(self.project_name))
 
@@ -41,14 +41,14 @@ class Project(Document):
 		'''
 		Copy tasks from template
 		'''
-		if self.project_template and not frappe.db.get_all('Task', dict(project = self.name), limit=1):
+		if self.project_template and not frappe.db.get_all("general_task", dict(project = self.name), limit=1):
 
 			# has a template, and no loaded tasks, so lets create
 			if not self.expected_start_date:
 				# project starts today
 				self.expected_start_date = today()
 
-			template = frappe.get_doc('Project Template', self.project_template)
+			template = frappe.get_doc('general_template', self.project_template)
 
 			if not self.project_type:
 				self.project_type = template.project_type
@@ -56,10 +56,10 @@ class Project(Document):
 			# create tasks from template
 			for task in template.tasks:
 				frappe.get_doc(dict(
-					doctype = 'Task',
+					doctype = "general_task",
 					subject = task.subject,
 					project = self.name,
-					status = 'Waiting_to_open',
+					status = 'Open',
 					exp_start_date = add_days(self.expected_start_date, task.start),
 					exp_end_date = add_days(self.expected_start_date, task.start + task.duration),
 					description = task.description,
@@ -92,7 +92,7 @@ class Project(Document):
 				self.percent_complete = 100
 			return
 
-		total = frappe.db.count('Task', dict(project=self.name))
+		total = frappe.db.count("general_task", dict(project=self.name))
 
 		if not total:
 			self.percent_complete = 0
@@ -125,8 +125,8 @@ class Project(Document):
 		if self.percent_complete == 100:
 			self.status = "Completed"
 
-		#else:
-			#self.status = "Open"
+		else:
+			self.status = "Open"
 
 	def update_costing(self):
 		from_time_sheet = frappe.db.sql("""select
@@ -183,12 +183,12 @@ class Project(Document):
 
 	def after_rename(self, old_name, new_name, merge=False):
 		if old_name == self.copied_from:
-			frappe.db.set_value('Project', new_name, 'copied_from', new_name)
+			frappe.db.set_value("general_project", new_name, 'copied_from', new_name)
 
 	def send_welcome_email(self):
 		url = get_url("/project/?name={0}".format(self.name))
 		messages = (
-			_("You have been invited to collaborate on the project: {0}".format(self.name)),
+			_("You have been invited to collaborate on the project: {0}").format(self.name),
 			url,
 			_("Join")
 		)
@@ -225,7 +225,7 @@ def get_project_list(doctype, txt, filters, limit_start, limit_page_length=20, o
 		'''.format(limit_start, limit_page_length),
 						 {'user': frappe.session.user},
 						 as_dict=True,
-						 update={'doctype': 'Project'})
+						 update={'doctype': "general_project"})
 
 
 def get_list_context(context=None):
@@ -266,7 +266,7 @@ def get_users_for_project(doctype, txt, searchfield, start, page_len, filters):
 
 @frappe.whitelist()
 def get_cost_center_name(project):
-	return frappe.db.get_value("Project", project, "cost_center")
+	return frappe.db.get_value("general_project", project, "cost_center")
 
 def hourly_reminder():
 	fields = ["from_time", "to_time"]
@@ -341,13 +341,13 @@ def create_duplicate_project(prev_doc, project_name):
 	project.insert()
 
 	# fetch all the task linked with the old project
-	task_list = frappe.get_all("Task", filters={
+	task_list = frappe.get_all("general_task", filters={
 		'project': prev_doc.get('name')
 	}, fields=['name'])
 
 	# Create duplicate task for all the task
 	for task in task_list:
-		task = frappe.get_doc('Task', task)
+		task = frappe.get_doc("general_task", task)
 		new_task = frappe.copy_doc(task)
 		new_task.project = project.name
 		new_task.insert()
@@ -357,11 +357,11 @@ def create_duplicate_project(prev_doc, project_name):
 def get_projects_for_collect_progress(frequency, fields):
 	fields.extend(["name"])
 
-	return frappe.get_all("Project", fields = fields,
+	return frappe.get_all("general_project", fields = fields,
 		filters = {'collect_progress': 1, 'frequency': frequency, 'status': 'Open'})
 
 def send_project_update_email_to_users(project):
-	doc = frappe.get_doc('Project', project)
+	doc = frappe.get_doc("general_project", project)
 
 	if is_holiday(doc.holiday_list) or not doc.users: return
 
@@ -421,7 +421,7 @@ def send_project_status_email_to_users():
 		{'date': yesterday, 'sent': 0}):
 		doc = frappe.get_doc("Project Update", d.name)
 
-		project_doc = frappe.get_doc('Project', doc.project)
+		project_doc = frappe.get_doc("general_project", doc.project)
 
 		args = {
 			"users": doc.users,
@@ -445,19 +445,19 @@ def update_project_sales_billing():
 		return
 
 	#Else simply fallback to Daily
-	exists_query = '(SELECT 1 from `tab{doctype}` where docstatus = 1 and project = `tabProject`.name)'
+	exists_query = '(SELECT 1 from `tab{doctype}` where docstatus = 1 and project = `tabgeneral_project`.name)'
 	project_map = {}
 	for project_details in frappe.db.sql('''
-			SELECT name, 1 as order_exists, null as invoice_exists from `tabProject` where
+			SELECT name, 1 as order_exists, null as invoice_exists from `tabgeneral_project` where
 			exists {order_exists}
 			union
-			SELECT name, null as order_exists, 1 as invoice_exists from `tabProject` where
+			SELECT name, null as order_exists, 1 as invoice_exists from `tabgeneral_project` where
 			exists {invoice_exists}
 		'''.format(
 			order_exists=exists_query.format(doctype="Sales Order"),
 			invoice_exists=exists_query.format(doctype="Sales Invoice"),
 		), as_dict=True):
-		project = project_map.setdefault(project_details.name, frappe.get_doc('Project', project_details.name))
+		project = project_map.setdefault(project_details.name, frappe.get_doc("general_project", project_details.name))
 		if project_details.order_exists:
 			project.update_sales_amount()
 		if project_details.invoice_exists:
@@ -471,7 +471,7 @@ def create_kanban_board_if_not_exists(project):
 	from frappe.desk.doctype.kanban_board.kanban_board import quick_kanban_board
 
 	if not frappe.db.exists('Kanban Board', project):
-		quick_kanban_board('Task', project, 'status')
+		quick_kanban_board("general_task", project, 'status')
 
 	return True
 
@@ -483,11 +483,11 @@ def set_project_status(project, status):
 	if not status in ('Completed', 'Cancelled'):
 		frappe.throw(_('Status must be Cancelled or Completed'))
 
-	project = frappe.get_doc('Project', project)
+	project = frappe.get_doc("general_project", project)
 	frappe.has_permission(doc = project, throw = True)
 
-	for task in frappe.get_all('Task', dict(project = project.name)):
-		frappe.db.set_value('Task', task.name, 'status', status)
+	for task in frappe.get_all("general_task", dict(project = project.name)):
+		frappe.db.set_value("general_task", task.name, 'status', status)
 
 	project.status = status
 	project.save()

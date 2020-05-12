@@ -29,6 +29,30 @@ def get_data():
 				},
 				{
 					"type": "doctype",
+					"name": "sales_contract",
+					"description": _("sales_contract"),
+					"onboard": 1,
+				},
+				{
+					"type": "doctype",
+					"name": "Visitlog_customer",
+					"description": _("Visitlog_customer"),
+					"onboard": 1,
+				},
+				{
+					"type": "doctype",
+					"name": "Sales_reimbursement",
+					"description": _("Sales_reimbursement"),
+					"onboard": 1,
+				},
+				{
+					"type": "doctype",
+					"name": "Submit_invoice",
+					"description": _("Submit_invoice"),
+					"onboard": 1,
+				},
+				{
+					"type": "doctype",
 					"name": "Sales Invoice",
 					"description": _("Invoices for Costumers."),
 					"onboard": 1,

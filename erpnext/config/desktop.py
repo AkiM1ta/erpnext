@@ -107,7 +107,24 @@ def get_data():
 			"type": "module",
 			"description": "Quality goals, procedures, reviews and action."
 		},
-
+		{
+			"module_name": "general management",
+			"category": "Modules",
+			"label": _("General Management"),
+			"color": "#1abc9c",
+			"icon": "fa fa-check-square-o",
+			"type": "module",
+			"description": "General Management."
+		},
+		# {
+		# 	"module_name": "general management",
+		# 	"category": "Domains",
+		# 	"label": _("General Management"),
+		# 	"color": "#1abc9c",
+		# 	"icon": "fa fa-check-square-o",
+		# 	"type": "module",
+		# 	"description": "General Management."
+		# },
 
 		# Category: "Domains"
 		{

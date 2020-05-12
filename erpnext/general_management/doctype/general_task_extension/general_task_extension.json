@@ -1,0 +1,114 @@
+{
+ "autoname": "format:{task_no}-Delay-{##}",
+ "creation": "2020-04-14 12:19:40.464976",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "task_no",
+  "task_name",
+  "project",
+  "project_no",
+  "head_in_charge",
+  "lan",
+  "exp_start_date",
+  "analysis_cutoff_time",
+  "extension_time",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "extension_time",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "\u7533\u8bf7\u5ef6\u671f\u65f6\u95f4"
+  },
+  {
+   "default": "\u5f85\u5ba1\u6279",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "\u5ba1\u6279\u72b6\u6001",
+   "options": "\u5f85\u5ba1\u6279\n\u5ba1\u6279\u5b8c\u6210\n\u5ba1\u6279\u9a73\u56de",
+   "read_only": 1
+  },
+  {
+   "fieldname": "task_no",
+   "fieldtype": "Link",
+   "label": "\u4efb\u52a1\u7f16\u53f7",
+   "options": "general_task",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "task_no.task_name",
+   "fieldname": "task_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u4efb\u52a1\u540d\u79f0",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "task_no.project",
+   "fieldname": "project",
+   "fieldtype": "Data",
+   "label": "\u9879\u76ee\u540d\u79f0",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "task_no.project_no",
+   "fieldname": "project_no",
+   "fieldtype": "Data",
+   "label": "\u9879\u76ee\u7f16\u53f7",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "task_no.head_in_charge",
+   "fieldname": "head_in_charge",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u4efb\u52a1\u8d1f\u8d23\u4eba",
+   "read_only": 1
+  },
+  {
+   "fieldname": "lan",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "task_no.exp_start_date",
+   "fieldname": "exp_start_date",
+   "fieldtype": "Datetime",
+   "label": "\u4efb\u52a1\u5f00\u59cb\u65f6\u95f4",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "task_no.analysis_cutoff_time",
+   "fieldname": "analysis_cutoff_time",
+   "fieldtype": "Datetime",
+   "label": "\u4efb\u52a1\u622a\u81f3\u65f6\u95f4",
+   "read_only": 1
+  }
+ ],
+ "modified": "2020-04-20 17:41:34.484814",
+ "modified_by": "Administrator",
+ "module": "general management",
+ "name": "General Task Extension",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

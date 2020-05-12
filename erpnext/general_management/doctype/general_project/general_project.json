@@ -1,0 +1,539 @@
+{
+ "allow_rename": 1,
+ "autoname": "format: {project_name}",
+ "creation": "2020-04-21 14:42:57.074218",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "engine": "InnoDB",
+ "field_order": [
+  "contract_number",
+  "contract_name",
+  "project_name",
+  "project_no",
+  "status",
+  "project_template",
+  "lan1",
+  "project_management",
+  "project_management_name",
+  "analyst",
+  "project_create_tome",
+  "analysis_cutoff_time",
+  "department",
+  "percent_complete_method",
+  "percent_complete",
+  "die1",
+  "related_documents",
+  "related_instructions",
+  "project_budget",
+  "project_type",
+  "is_active",
+  "expected_start_date",
+  "expected_end_date",
+  "priority",
+  "customer_details",
+  "customer",
+  "sales_order",
+  "users_section",
+  "users",
+  "copied_from",
+  "section_break0",
+  "notes",
+  "section_break_18",
+  "actual_start_date",
+  "actual_time",
+  "column_break_20",
+  "actual_end_date",
+  "project_details",
+  "estimated_costing",
+  "people_budget",
+  "lan2",
+  "actual_estimated_costing",
+  "actual_people_budget",
+  "total_costing_amount",
+  "total_expense_claim",
+  "total_purchase_cost",
+  "total_sales_amount",
+  "total_billable_amount",
+  "total_billed_amount",
+  "total_consumed_material_cost",
+  "margin",
+  "gross_margin",
+  "column_break_37",
+  "per_gross_margin",
+  "monitor_progress",
+  "collect_progress",
+  "holiday_list",
+  "frequency",
+  "from_time",
+  "to_time",
+  "first_email",
+  "second_email",
+  "daily_time_to_send",
+  "day_to_send",
+  "weekly_time_to_send",
+  "column_break_45",
+  "message"
+ ],
+ "fields": [
+  {
+   "fieldname": "contract_number",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u5408\u540c\u540d\u79f0",
+   "options": "general_contract"
+  },
+  {
+   "fetch_from": "contract_number.general_contract_number",
+   "fieldname": "contract_name",
+   "fieldtype": "Data",
+   "label": "\u5408\u540c\u7f16\u53f7"
+  },
+  {
+   "fieldname": "project_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u9879\u76ee\u7f16\u53f7"
+  },
+  {
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u9879\u76ee\u540d\u79f0",
+   "unique": 1
+  },
+  {
+   "default": "\u5f85\u6253\u5f00",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "no_copy": 1,
+   "options": "\u5f85\u6253\u5f00\nOpen\nCompleted\nCancelled",
+   "search_index": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "project_template",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u9879\u76ee\u7c7b\u578b",
+   "options": "general_template"
+  },
+  {
+   "fieldname": "project_management",
+   "fieldtype": "Link",
+   "label": "\u9879\u76ee\u8d1f\u8d23\u4eba",
+   "options": "User"
+  },
+  {
+   "fetch_from": "project_management.full_name",
+   "fieldname": "project_management_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "\u8d1f\u8d23\u4eba\u59d3\u540d",
+   "read_only": 1
+  },
+  {
+   "fieldname": "analyst",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "\u5b9e\u65bd\u4eba\u5458",
+   "options": "User"
+  },
+  {
+   "default": "Now",
+   "fieldname": "project_create_tome",
+   "fieldtype": "Datetime",
+   "label": "\u9879\u76ee\u521b\u5efa\u65f6\u95f4"
+  },
+  {
+   "fieldname": "analysis_cutoff_time",
+   "fieldtype": "Date",
+   "label": "\u9879\u76ee\u4ea4\u4ed8\u65f6\u95f4"
+  },
+  {
+   "default": "\u53e4\u5965\u57fa\u56e0",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "\u6240\u5c5e\u90e8\u95e8",
+   "options": "Department"
+  },
+  {
+   "depends_on": "iscurrency",
+   "fieldname": "project_budget",
+   "fieldtype": "Currency",
+   "label": "\u9879\u76ee\u9884\u7b97"
+  },
+  {
+   "fieldname": "related_documents",
+   "fieldtype": "Attach",
+   "label": "\u76f8\u5173\u6587\u6863"
+  },
+  {
+   "fieldname": "project_type",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "in_standard_filter": 1,
+   "label": "Project Type",
+   "options": "Project Type"
+  },
+  {
+   "fieldname": "is_active",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Is Active",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "Task Completion",
+   "fieldname": "percent_complete_method",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "% Complete Method",
+   "options": "Manual\nTask Completion\nTask Progress\nTask Weight"
+  },
+  {
+   "bold": 1,
+   "fieldname": "percent_complete",
+   "fieldtype": "Percent",
+   "hidden": 1,
+   "label": "% Completed",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "expected_start_date",
+   "fieldtype": "Date",
+   "hidden": 1,
+   "label": "Expected Start Date"
+  },
+  {
+   "bold": 1,
+   "fieldname": "expected_end_date",
+   "fieldtype": "Date",
+   "hidden": 1,
+   "label": "Expected End Date"
+  },
+  {
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "in_standard_filter": 1,
+   "label": "Priority",
+   "options": "Medium\nLow\nHigh"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "customer_details",
+   "fieldtype": "Section Break",
+   "label": "Customer Details",
+   "options": "fa fa-user"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "in_global_search": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "print_hide": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "sales_order",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Sales Order",
+   "options": "Sales Order"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "users_section",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Users"
+  },
+  {
+   "description": "Project will be accessible on the website to these users",
+   "fieldname": "users",
+   "fieldtype": "Table",
+   "hidden": 1,
+   "label": "Users",
+   "options": "Project User"
+  },
+  {
+   "fieldname": "copied_from",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Copied From",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break0",
+   "fieldtype": "Section Break",
+   "label": "Notes",
+   "options": "fa fa-list"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text Editor",
+   "hidden": 1,
+   "label": "Notes"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_18",
+   "fieldtype": "Section Break",
+   "label": "Start and End Dates"
+  },
+  {
+   "fieldname": "actual_start_date",
+   "fieldtype": "Data",
+   "label": "Actual Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "actual_time",
+   "fieldtype": "Float",
+   "label": "Actual Time (in Hours)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "actual_end_date",
+   "fieldtype": "Date",
+   "label": "Actual End Date",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "project_details",
+   "fieldtype": "Section Break",
+   "label": "Costing and Billing",
+   "options": "fa fa-money"
+  },
+  {
+   "fieldname": "estimated_costing",
+   "fieldtype": "Currency",
+   "label": "\u9879\u76ee\u652f\u51fa\u9884\u7b97"
+  },
+  {
+   "fieldname": "total_costing_amount",
+   "fieldtype": "Currency",
+   "label": "Total Costing Amount (via Timesheets)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_expense_claim",
+   "fieldtype": "Currency",
+   "label": "Total Expense Claim (via Expense Claims)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_purchase_cost",
+   "fieldtype": "Currency",
+   "label": "Total Purchase Cost (via Purchase Invoice)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_sales_amount",
+   "fieldtype": "Currency",
+   "label": "Total Sales Amount (via Sales Order)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_billable_amount",
+   "fieldtype": "Currency",
+   "label": "Total Billable Amount (via Timesheets)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_billed_amount",
+   "fieldtype": "Currency",
+   "label": "Total Billed Amount (via Sales Invoices)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_consumed_material_cost",
+   "fieldtype": "Currency",
+   "label": "Total Consumed Material Cost  (via Stock Entry)",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "margin",
+   "fieldtype": "Section Break",
+   "label": "Margin",
+   "width": "50%"
+  },
+  {
+   "fieldname": "gross_margin",
+   "fieldtype": "Currency",
+   "label": "Gross Margin",
+   "options": "Company:company:default_currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_37",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "per_gross_margin",
+   "fieldtype": "Percent",
+   "label": "Gross Margin %",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "monitor_progress",
+   "fieldtype": "Section Break",
+   "label": "Monitor Progress"
+  },
+  {
+   "default": "0",
+   "fieldname": "collect_progress",
+   "fieldtype": "Check",
+   "label": "Collect Progress"
+  },
+  {
+   "depends_on": "collect_progress",
+   "fieldname": "holiday_list",
+   "fieldtype": "Link",
+   "label": "Holiday List",
+   "options": "Holiday List"
+  },
+  {
+   "depends_on": "eval:doc.collect_progress == true",
+   "fieldname": "frequency",
+   "fieldtype": "Select",
+   "label": "Frequency To Collect Progress",
+   "options": "Hourly\nTwice Daily\nDaily\nWeekly"
+  },
+  {
+   "depends_on": "eval:(doc.frequency == \"Hourly\" && doc.collect_progress)",
+   "fieldname": "from_time",
+   "fieldtype": "Time",
+   "label": "From Time"
+  },
+  {
+   "depends_on": "eval:(doc.frequency == \"Hourly\" && doc.collect_progress)",
+   "fieldname": "to_time",
+   "fieldtype": "Time",
+   "label": "To Time"
+  },
+  {
+   "depends_on": "eval:(doc.frequency == \"Twice Daily\" && doc.collect_progress == true)\n\n",
+   "fieldname": "first_email",
+   "fieldtype": "Time",
+   "label": "First Email"
+  },
+  {
+   "depends_on": "eval:(doc.frequency == \"Twice Daily\" && doc.collect_progress == true)",
+   "fieldname": "second_email",
+   "fieldtype": "Time",
+   "label": "Second Email"
+  },
+  {
+   "depends_on": "eval:(doc.frequency == \"Daily\" && doc.collect_progress == true)",
+   "fieldname": "daily_time_to_send",
+   "fieldtype": "Time",
+   "label": "Time to send"
+  },
+  {
+   "depends_on": "eval:(doc.frequency == \"Weekly\" && doc.collect_progress == true)",
+   "fieldname": "day_to_send",
+   "fieldtype": "Select",
+   "label": "Day to Send",
+   "options": "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday"
+  },
+  {
+   "depends_on": "eval:(doc.frequency == \"Weekly\" && doc.collect_progress == true)",
+   "fieldname": "weekly_time_to_send",
+   "fieldtype": "Time",
+   "label": "Time to send"
+  },
+  {
+   "fieldname": "column_break_45",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "collect_progress",
+   "description": "Message will sent to users to get their status on the project",
+   "fieldname": "message",
+   "fieldtype": "Text",
+   "label": "Message"
+  },
+  {
+   "fieldname": "lan1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "people_budget",
+   "fieldtype": "Int",
+   "label": "\u9879\u76ee\u4eba\u529b\u9884\u7b97"
+  },
+  {
+   "default": "0",
+   "fieldname": "actual_estimated_costing",
+   "fieldtype": "Currency",
+   "label": "\u9879\u76ee\u5b9e\u9645\u652f\u51fa",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "actual_people_budget",
+   "fieldtype": "Int",
+   "label": "\u9879\u76ee\u5b9e\u9645\u4eba\u529b\u6d88\u8017",
+   "read_only": 1
+  },
+  {
+   "fieldname": "lan2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "die1",
+   "fieldtype": "Section Break",
+   "label": "\u76f8\u5173\u8bf4\u660e"
+  },
+  {
+   "fieldname": "related_instructions",
+   "fieldtype": "Text Editor",
+   "label": "\u76f8\u5173\u8bf4\u660e"
+  }
+ ],
+ "icon": "fa fa-puzzle-piece",
+ "max_attachments": 4,
+ "modified": "2020-04-23 18:28:36.202052",
+ "modified_by": "wull@gooalgene.com",
+ "module": "general management",
+ "name": "general_project",
+ "owner": "563813130@qq.com",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "customer, status, priority, is_active",
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "timeline_field": "customer",
+ "title_field": "project_no",
+ "track_seen": 1
+}

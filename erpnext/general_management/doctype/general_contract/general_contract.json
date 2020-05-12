@@ -1,0 +1,86 @@
+{
+ "autoname": "format:{general_contract_number}",
+ "creation": "2020-04-14 10:42:01.246152",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "general_contract_type",
+  "general_contract_name",
+  "general_contract_number",
+  "general_contract_budget",
+  "general_contract_effectivedate",
+  "general_contract_deliverydate",
+  "general_contract_demand",
+  "general_contract_operation"
+ ],
+ "fields": [
+  {
+   "fieldname": "general_contract_type",
+   "fieldtype": "Select",
+   "label": "\u5408\u540c\u7c7b\u578b",
+   "options": "\u5408\u540c\u7c7b\u578b1\n\u5408\u540c\u7c7b\u578b2"
+  },
+  {
+   "fieldname": "general_contract_name",
+   "fieldtype": "Data",
+   "label": "\u5408\u540c\u540d\u79f0"
+  },
+  {
+   "fieldname": "general_contract_number",
+   "fieldtype": "Data",
+   "label": "\u5408\u540c\u7f16\u53f7"
+  },
+  {
+   "fieldname": "general_contract_budget",
+   "fieldtype": "Currency",
+   "label": "\u5408\u540c\u9884\u7b97"
+  },
+  {
+   "fieldname": "general_contract_effectivedate",
+   "fieldtype": "Datetime",
+   "label": "\u751f\u6548\u65e5\u671f"
+  },
+  {
+   "fieldname": "general_contract_deliverydate",
+   "fieldtype": "Datetime",
+   "label": "\u4ea4\u4ed8\u65e5\u671f"
+  },
+  {
+   "fieldname": "general_contract_demand",
+   "fieldtype": "Link",
+   "label": "\u9700\u6c42\u8d1f\u8d23\u4eba",
+   "options": "User"
+  },
+  {
+   "fieldname": "general_contract_operation",
+   "fieldtype": "Link",
+   "label": "\u5b9e\u65bd\u8d1f\u8d23\u4eba",
+   "options": "User"
+  }
+ ],
+ "modified": "2020-04-14 10:42:01.246152",
+ "modified_by": "Administrator",
+ "module": "general management",
+ "name": "general_contract",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "general_contract_name",
+ "track_changes": 1
+}

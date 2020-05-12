@@ -1,0 +1,61 @@
+{
+ "creation": "2020-04-14 11:05:09.763351",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "project",
+  "status",
+  "person_consume",
+  "money_consume",
+  "estimated_settlement_time"
+ ],
+ "fields": [
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u9879\u76ee\u540d\u79f0",
+   "options": "general_project"
+  },
+  {
+   "fetch_from": "project.status",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u72b6\u6001",
+   "options": "Waiting to open\nOpen\nCompleted\nCancelled"
+  },
+  {
+   "fetch_from": "project.actual_people_budget",
+   "fieldname": "person_consume",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "\u4eba\u529b\u6d88\u8017"
+  },
+  {
+   "fetch_from": "project.actual_estimated_costing",
+   "fieldname": "money_consume",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "\u8d44\u91d1\u6d88\u8017"
+  },
+  {
+   "fieldname": "estimated_settlement_time",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "\u9884\u8ba1\u7ed3\u675f\u65f6\u95f4"
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-04-16 20:02:01.338495",
+ "modified_by": "Administrator",
+ "module": "general management",
+ "name": "Associated Projects",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

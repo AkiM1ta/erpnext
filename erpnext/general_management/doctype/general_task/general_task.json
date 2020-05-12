@@ -1,0 +1,521 @@
+{
+ "allow_import": 1,
+ "autoname": "format:GTASK-{YYYY}-{##}",
+ "creation": "2020-04-21 15:38:00.711308",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "engine": "InnoDB",
+ "field_order": [
+  "zhedie",
+  "source",
+  "subject",
+  "project",
+  "project_no",
+  "lan22",
+  "contract_number",
+  "contract_name",
+  "meeting_id",
+  "lan1",
+  "task_type",
+  "head_in_charge",
+  "head_in_charge_name",
+  "task_no",
+  "task_name",
+  "department",
+  "lan11",
+  "status",
+  "task_weight",
+  "color",
+  "task_expenditure",
+  "die1",
+  "initial_explain",
+  "initial_file",
+  "sb_timeline",
+  "project_create_tome",
+  "analysis_cutoff_time",
+  "exp_start_date",
+  "parent_task",
+  "lan2",
+  "exp_end_date",
+  "expected_time",
+  "progress",
+  "issue",
+  "type",
+  "is_group",
+  "priority",
+  "jie",
+  "task_delay_time",
+  "sb_details",
+  "task_record",
+  "\u4efb\u52a1\u7ed3\u679c\u8bf4\u660e",
+  "\u4efb\u52a1\u7ed3\u679c\u9644\u4ef6",
+  "sb_depends_on",
+  "depends_on",
+  "depends_on_tasks",
+  "sb_actual",
+  "act_start_date",
+  "actual_time",
+  "column_break_15",
+  "act_end_date",
+  "sb_costing",
+  "total_costing_amount",
+  "total_expense_claim",
+  "column_break_20",
+  "total_billing_amount",
+  "sb_more_info",
+  "review_date",
+  "closing_date",
+  "column_break_22",
+  "company",
+  "lft",
+  "rgt",
+  "old_parent"
+ ],
+ "fields": [
+  {
+   "bold": 1,
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "\u9879\u76ee\u540d\u79f0",
+   "options": "general_project",
+   "remember_last_selected_value": 1,
+   "search_index": 1
+  },
+  {
+   "columns": 5,
+   "fetch_from": "project.contract_number",
+   "fieldname": "contract_number",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "in_list_view": 1,
+   "label": "\u5408\u540c\u540d\u79f0",
+   "options": "general_contract",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "project.contract_name",
+   "fieldname": "contract_name",
+   "fieldtype": "Data",
+   "label": " \u5408\u540c\u7f16\u53f7"
+  },
+  {
+   "columns": 2,
+   "fieldname": "task_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u4efb\u52a1\u540d\u79f0"
+  },
+  {
+   "fieldname": "task_type",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "\u4efb\u52a1\u7c7b\u578b",
+   "options": "gooal task type"
+  },
+  {
+   "fieldname": "head_in_charge",
+   "fieldtype": "Link",
+   "label": "\u4efb\u52a1\u8d1f\u8d23\u4eba",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "completed_by.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "\u90e8\u95e8",
+   "options": "Department",
+   "read_only": 1
+  },
+  {
+   "columns": 8,
+   "fieldname": "analysis_cutoff_time",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "\u4efb\u52a1\u622a\u6b62\u65f6\u95f4"
+  },
+  {
+   "fieldname": "project_create_tome",
+   "fieldtype": "Datetime",
+   "label": "\u4efb\u52a1\u521b\u5efa\u65f6\u95f4"
+  },
+  {
+   "fieldname": "issue",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Issue",
+   "options": "Issue"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Type",
+   "options": "Task Type"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "bold": 1,
+   "columns": 3,
+   "default": "Waiting to open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "\u4efb\u52a1\u6267\u884c\u72b6\u6001",
+   "no_copy": 1,
+   "options": "Open\nWaiting to open\nWorking\nPending Review\nOverdue\nCompleted\nCancelled"
+  },
+  {
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "in_standard_filter": 1,
+   "label": "Priority",
+   "options": "Low\nMedium\nHigh\nUrgent",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "type.weight",
+   "fieldname": "task_weight",
+   "fieldtype": "Float",
+   "label": "\u6743\u91cd"
+  },
+  {
+   "fieldname": "color",
+   "fieldtype": "Color",
+   "hidden": 1,
+   "label": "Color"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "jie",
+   "fieldtype": "Section Break",
+   "label": "\u5ef6\u671f\u65f6\u95f4"
+  },
+  {
+   "fieldname": "task_delay_time",
+   "fieldtype": "Table",
+   "label": "\u5ef6\u671f\u65f6\u95f4",
+   "options": "general_task_extension"
+  },
+  {
+   "bold": 1,
+   "fieldname": "parent_task",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Parent Task",
+   "options": "general_task",
+   "search_index": 1
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "eval:doc.__islocal",
+   "fieldname": "sb_timeline",
+   "fieldtype": "Section Break",
+   "label": "Timeline"
+  },
+  {
+   "fieldname": "exp_start_date",
+   "fieldtype": "Datetime",
+   "label": "\u4efb\u52a1\u5f00\u59cb\u65f6\u95f4"
+  },
+  {
+   "default": "0",
+   "fieldname": "expected_time",
+   "fieldtype": "Float",
+   "label": "Expected Time (in hours)"
+  },
+  {
+   "bold": 1,
+   "fieldname": "exp_end_date",
+   "fieldtype": "Datetime",
+   "label": "\u4efb\u52a1\u7ed3\u675f\u65f6\u95f4",
+   "search_index": 1
+  },
+  {
+   "fieldname": "progress",
+   "fieldtype": "Percent",
+   "label": "% Progress"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sb_details",
+   "fieldtype": "Section Break",
+   "label": "\u4efb\u52a1\u8fc7\u7a0b\u53ca\u7ed3\u679c"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sb_depends_on",
+   "fieldtype": "Section Break",
+   "label": "\u4f9d\u8d56"
+  },
+  {
+   "fieldname": "depends_on_tasks",
+   "fieldtype": "Code",
+   "hidden": 1,
+   "label": "Depends on Tasks",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sb_actual",
+   "fieldtype": "Section Break",
+   "print_width": "50%",
+   "width": "50%"
+  },
+  {
+   "fieldname": "act_start_date",
+   "fieldtype": "Date",
+   "label": "Actual Start Date (via Time Sheet)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "actual_time",
+   "fieldtype": "Float",
+   "hidden": 1,
+   "label": "Actual Time (in hours)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "act_end_date",
+   "fieldtype": "Date",
+   "label": "Actual End Date (via Time Sheet)",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sb_costing",
+   "fieldtype": "Section Break",
+   "label": "Costing"
+  },
+  {
+   "fieldname": "total_costing_amount",
+   "fieldtype": "Currency",
+   "label": "Total Costing Amount (via Time Sheet)",
+   "options": "Company:company:default_currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_expense_claim",
+   "fieldtype": "Currency",
+   "label": "Total Expense Claim (via Expense Claim)",
+   "options": "Company:company:default_currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_billing_amount",
+   "fieldtype": "Currency",
+   "label": "Total Billing Amount (via Time Sheet)",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sb_more_info",
+   "fieldtype": "Section Break",
+   "label": "More Info"
+  },
+  {
+   "depends_on": "eval:doc.status == \"Closed\" || doc.status == \"Pending Review\"",
+   "fieldname": "review_date",
+   "fieldtype": "Date",
+   "label": "Review Date"
+  },
+  {
+   "depends_on": "eval:doc.status == \"Closed\"",
+   "fieldname": "closing_date",
+   "fieldtype": "Date",
+   "label": "Closing Date"
+  },
+  {
+   "fieldname": "column_break_22",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "remember_last_selected_value": 1
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "lft",
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "rgt",
+   "read_only": 1
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "ignore_user_permissions": 1,
+   "label": "Old Parent",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "project.project_no",
+   "fieldname": "project_no",
+   "fieldtype": "Data",
+   "label": "\u9879\u76ee\u7f16\u53f7",
+   "read_only": 1
+  },
+  {
+   "fieldname": "task_no",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "\u4efb\u52a1\u7f16\u53f7"
+  },
+  {
+   "fieldname": "initial_explain",
+   "fieldtype": "Text Editor",
+   "label": "\u4efb\u52a1\u521d\u59cb\u8bf4\u660e"
+  },
+  {
+   "fieldname": "initial_file",
+   "fieldtype": "Attach",
+   "label": "\u4efb\u52a1\u521d\u59cb\u9644\u4ef6"
+  },
+  {
+   "fieldname": "task_expenditure",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "\u4efb\u52a1\u652f\u51fa"
+  },
+  {
+   "fieldname": "lan1",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "lan2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "\u4efb\u52a1\u7ed3\u679c\u8bf4\u660e",
+   "fieldtype": "Text Editor",
+   "label": "\u4efb\u52a1\u7ed3\u679c\u8bf4\u660e"
+  },
+  {
+   "fieldname": "\u4efb\u52a1\u7ed3\u679c\u9644\u4ef6",
+   "fieldtype": "Attach",
+   "label": "\u4efb\u52a1\u7ed3\u679c\u9644\u4ef6"
+  },
+  {
+   "fieldname": "subject",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "in_global_search": 1,
+   "in_standard_filter": 1,
+   "label": "\u4efb\u52a1\u4e3b\u9898",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "depends_on",
+   "fieldtype": "Table",
+   "label": "Dependent Tasks",
+   "options": "Task Depends On"
+  },
+  {
+   "fetch_from": "head_in_charge.employee_name",
+   "fieldname": "head_in_charge_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "\u8d1f\u8d23\u4eba\u59d3\u540d",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "die1",
+   "fieldtype": "Section Break",
+   "label": "\u4efb\u52a1\u521d\u59cb\u8bf4\u660e"
+  },
+  {
+   "default": "\u9879\u76ee",
+   "fieldname": "source",
+   "fieldtype": "Select",
+   "label": "\u4efb\u52a1\u6765\u6e90",
+   "options": "\u9879\u76ee\n\u4f1a\u8bae\n\u4e34\u65f6\u5b89\u6392"
+  },
+  {
+   "fieldname": "meeting_id",
+   "fieldtype": "Link",
+   "label": "\u4f1a\u8bae\u7f16\u53f7",
+   "options": "Event"
+  },
+  {
+   "fieldname": "zhedie",
+   "fieldtype": "Section Break",
+   "label": "\u4efb\u52a1\u6765\u6e90"
+  },
+  {
+   "fieldname": "lan11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "lan22",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "task_record",
+   "fieldtype": "Table",
+   "label": "\u4efb\u52a1\u8fc7\u7a0b\u8ffd\u8e2a",
+   "options": "general_work_item"
+  }
+ ],
+ "icon": "fa fa-check",
+ "is_tree": 1,
+ "max_attachments": 5,
+ "modified": "2020-04-24 17:43:23.930684",
+ "modified_by": "Administrator",
+ "module": "general management",
+ "name": "general_task",
+ "nsm_parent_field": "parent_task",
+ "owner": "563813130@qq.com",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Projects User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "task_name,subject",
+ "show_name_in_global_search": 1,
+ "show_preview_popup": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "timeline_field": "project",
+ "track_seen": 1
+}
