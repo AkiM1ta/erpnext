@@ -44,6 +44,11 @@ def get_data():
 					"description": _("Project Update."),
 					"dependencies": ["Project"],
 				},
+				{
+					"type": "doctype",
+					"name": "project_assembly_experience_record_sharing_table",
+					"description": _("Project assembly experience record sharing table."),
+				}
 			]
 		},
 		{
