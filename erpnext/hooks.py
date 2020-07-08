@@ -267,6 +267,10 @@ doc_events = {
 }
 
 scheduler_events = {
+    "cron": {
+            "0 6 * * *": ["erpnext.hr.doctype.courier.courier.updated_courier"],
+            "0 12 * * *": ["erpnext.hr.doctype.courier.courier.updated_courier"]
+        },
 	"all": [
 		"erpnext.projects.doctype.project.project.project_status_update_reminder"
 	],
