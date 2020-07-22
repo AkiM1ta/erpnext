@@ -48,6 +48,11 @@ def get_data():
 					"type": "doctype",
 					"name": "project_assembly_experience_record_sharing_table",
 					"description": _("Project assembly experience record sharing table."),
+				},
+                {
+                      "type": "doctype",
+                      "name": "Sample",
+                      "description": _("Sample.")
 				}
 			]
 		},
